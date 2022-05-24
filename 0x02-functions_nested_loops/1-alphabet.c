@@ -10,7 +10,7 @@ ch = 'a';
 
 while (ch <= 'z')
 {
-_putchar(ch);
+putchar(ch);
 ch++;
 }
 
