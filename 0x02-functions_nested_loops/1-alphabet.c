@@ -3,20 +3,18 @@
 /**
  * print_alphabet - prints the alphabet, in lowercase, followed by a new line
  */
-/**
- *print_alphabet - prints a string ina a array via a loop
- */
+
 
 void print_alphabet(void)
 {
-char ch;
-ch = 'a';
+char alpha;
+alpha = 'a';
 
-while (ch <= 'z')
+while (alpha <= 'z')
 {
-putchar(ch);
-ch++;
+putchar(alpha);
+alpha++;
 }
 
-_putchar('\n');
+putchar('\n');
 }
