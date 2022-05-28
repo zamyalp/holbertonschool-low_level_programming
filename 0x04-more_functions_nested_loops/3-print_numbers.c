@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_number - prints 0123456789
+ * print_numbers - prints 0123456789
  * Return: void
  */
 
