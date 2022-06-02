@@ -2,6 +2,7 @@
 
 /**
  * char *_strcpy - a function that copies the string pointed to by stc
+ * including the terminating null byte (\0)
  * @dest: copy to
  * @src: copy from
  * Return: string
