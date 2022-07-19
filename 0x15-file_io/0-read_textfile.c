@@ -1,39 +1,50 @@
 #include "main.h"
 
 /**
- * read_textfile - Entry Point
- * @filename: file name
- * @letters: size
- * Return: 0
+ * read_textfile - read a certain size and prints to std output
+ * @filename: file to read from
+ * @letters: size to read
+ * Return: actual size read and printed
  */
+
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int file, rd, wr;
-	char *buf;
+	int fd; /* file descriptor */
+	ssize_t n_read, n_wrote;
+	char *buffer;
 
 	if (filename == NULL)
 		return (0);
 
-	file = open(filename, O_RDONLY);
-
-	if (file == -1)
+	/* open */
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 		return (0);
 
-	buf = malloc(sizeof(char) * letters + 1);
-	if (buf == NULL)
+	/* malloc buffer */
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
 		return (0);
 
-	rd = read(file, buf, letters);
-	if (rd == -1)
+	/* read */
+	n_read = read(fd, buffer, letters);
+	if (n_read == -1)
+	{
+		free(buffer);
+		close(fd);
 		return (0);
+	}
 
-	buf[letters] = '\0';
-
-	wr = write(1, buf, rd);
-	if (wr == -1)
+	/* write */
+	n_wrote = write(STDOUT_FILENO, buffer, n_read);
+	if (n_wrote == -1)
+	{
+		free(buffer);
+		close(fd);
 		return (0);
+	}
 
-	close(file);
-	free(buf);
-	return (wr);
+	close(fd);
+	return (n_read);
+
 }
